@@ -37,6 +37,10 @@ function gerarFaturaStr(fatura, pecas) {
     let total = calcularTotalApresentacao(apre);
     faturaStr += `  ${getPeca(apre).nome}: ${formato(total / 100)} (${apre.audiencia} assentos)\n`;
     totalFatura += total;
+    creditos += Math.max(apre.audiencia - 30, 0);
+    if (getPeca(apre).tipo === "comedia") {
+      creditos += Math.floor(apre.audiencia / 5);
+    }
   }
   faturaStr += `Valor total: ${formato(totalFatura / 100)}\n`;
   faturaStr += `Créditos acumulados: ${creditos} \n`;
